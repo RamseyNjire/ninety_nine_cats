@@ -1,0 +1,19 @@
+<% @cats.each do |cat| %>
+    <p>
+       <span style="font-weight: bold">Name: </span><%= cat.name %>
+    </p>
+    <p>
+        <span style="font-weight: bold">Color: </span><%= cat.color %>
+    </p>
+    <p>
+        <span style="font-weight: bold">Sex: </span><%= cat.sex == 'm' ? "male": "female" %>
+    </p>
+    <p>
+        <span style="font-weight: bold">Birthdate: </span><%= cat.birthdate %>
+    </p>
+    <p>
+        <span style="font-weight: bold">Description: </span><%= cat.description %>
+    </p>
+    <%= link_to 'Profile', cat_url(cat) %>
+    <br>
+<% end %>

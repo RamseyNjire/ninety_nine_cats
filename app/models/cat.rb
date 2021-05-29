@@ -4,7 +4,7 @@ class Cat < ApplicationRecord
 
 
     ALLOWED_COLORS = ["black", "white", "brown", "yellow", "orange"]
-    ALLOWED_SEXES = ["m", "f"]
+    ALLOWED_SEXES = ["m", "f", "M", "F"]
     validates :birthdate, :color, :name, :sex, presence: true
     validates :name, uniqueness: true
     validates_length_of :sex, maximum: 1
