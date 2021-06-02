@@ -1,0 +1,40 @@
+<h2>Let's Create A Cat!!</h2>
+
+<form action="/cats", method = "post">
+    <label for="cat_name">Name</label>
+    <input type="text" name="cat[name]" id="cat_name">
+    <br>
+    <br>
+
+    <label for="cat_birthdate">Birthdate</label>
+    <input type="date" name="cat[birthdate]" id="cat_birthdate">
+    <br>
+    <br>
+
+    <label for="cat_color">Color</label>
+    <select name="cat[color]" id="cat_color">
+        <option disabled selected>--select a color--</option>
+        <% @allowed_colors.each do |color| %>
+            <option value="<%= color %>"><%= color %></option>
+        <% end %>
+    </select>
+    <br>
+    <br>
+
+    <h3 style="display: inline-block; margin-right: 10px">Sex</h3>
+    <% @allowed_sexes.each do |sex| %>
+        <label for="<%= sex %>"><%= sex == "M" ? "Male" : "Female" %></label>
+        <input type="radio" name="cat[sex]" id="<%= sex %>" value="<%= sex %>">
+    <% end %>
+    <br>
+    <br>
+
+    <label for="cat_description">Description</label>
+    <textarea name="cat[description]" id="cat_description" cols="30" rows="10"></textarea>
+    <br>
+    <br>
+
+    <input type="submit" value="Create Cat">
+
+
+</form>
