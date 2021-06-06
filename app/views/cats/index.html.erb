@@ -1,6 +1,11 @@
-<h1>All Cats</h1>
+<h1>All The Cats</h1>
 
-<% @cats.each do |cat|%>
+<% @cats.each do |cat| %>
     <%= render cat %>
     <%= link_to 'Profile', cat_url(cat) %>
 <% end %>
+
+<br>
+<br>
+
+<%= link_to 'Create Cat', new_cat_url %>
