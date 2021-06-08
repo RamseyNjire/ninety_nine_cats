@@ -24,6 +24,14 @@ class Cat < ApplicationRecord
     validates_inclusion_of :color, in: ALLOWED_COLORS
     validates_inclusion_of :sex, in: ALLOWED_SEXES
 
+    has_many(
+        :cat_rental_requests,
+        class_name: 'CatRentalRequest',
+        foreign_key: :cat_id,
+        primary_key: :id,
+        dependent: :destroy
+    )
+
 
     def age
         time_ago_in_words(birthdate)
