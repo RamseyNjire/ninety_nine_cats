@@ -10,4 +10,12 @@ ramsey = Cat.create(birthdate: "2015-09-08", color: "black", name: "Ramsey", sex
 reson = Cat.create(birthdate: "2019-09-23", color: "white", name: "Reson", sex: "F", description: "This cat is laid back, has a dark sense of humour, and loves to watch TV")
 gideon = Cat.create(birthdate: "2016-06-01", color: "brown", name: "Gideon", sex: "M", description: "This cat is easygoing, loves slapstick humour, and enjoys scrolling through Instagram")
 
+CatRentalRequest.create(cat_id: ramsey.id, start_date: Date.today, end_date: Date.today + 3, status: "APPROVED")
+CatRentalRequest.create(cat_id: ramsey.id, start_date: Date.today + 4, end_date: Date.today + 7, status: "APPROVED")
+CatRentalRequest.create(cat_id: reson.id, start_date: Date.today, end_date: Date.today + 3)
+CatRentalRequest.create(cat_id: gideon.id, start_date: Date.today, end_date: Date.today + 3, status: "DENIED")
+
+
+
+
 
