@@ -3,6 +3,10 @@
 <% @cats.each do |cat| %>
     <%= render cat %>
     <%= link_to 'Profile', cat_url(cat) %>
+    <form action="<%= cat_url(cat)%>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+    </form>
 <% end %>
 
 <br>
