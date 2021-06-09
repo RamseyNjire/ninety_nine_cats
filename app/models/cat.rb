@@ -25,7 +25,7 @@ class Cat < ApplicationRecord
     validates_inclusion_of :sex, in: ALLOWED_SEXES
 
     has_many(
-        :cat_rental_requests,
+        :rental_requests,
         class_name: 'CatRentalRequest',
         foreign_key: :cat_id,
         primary_key: :id,

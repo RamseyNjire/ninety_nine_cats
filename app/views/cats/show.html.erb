@@ -1,3 +1,15 @@
 <%= render @cat %>
+
+<h1>Rental Requests</h1>
+
+
+
+<% @cat.rental_requests.order(start_date: :desc).each do |request|%>
+    <ul>
+        <li>Start Date: <%= request.start_date %></li>
+        <li>End Date: <%= request.end_date %></li>    
+    </ul>
+<% end %>
+
 <%= link_to 'Edit Cat', edit_cat_url(@cat) %>
 <%= link_to 'All Cats', cats_url %>
