@@ -24,7 +24,7 @@ class CatRentalRequest < ApplicationRecord
 
     def does_not_overlap_approved_request
         unless overlapping_approved_requests.empty?
-            errors[:base] << "There are overlapping requests"
+            errors[:base] << "There are overlapping requests for this cat. Try a different start date"
         end
     end
 end
