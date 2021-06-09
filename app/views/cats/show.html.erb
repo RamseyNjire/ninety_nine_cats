@@ -7,9 +7,23 @@
 <% @cat.rental_requests.order(start_date: :desc).each do |request|%>
     <ul>
         <li>Start Date: <%= request.start_date %></li>
-        <li>End Date: <%= request.end_date %></li>    
+        <li>End Date: <%= request.end_date %></li>
+        <li>Status: <%= request.status %></li>    
     </ul>
+
+    <% if request.status == "PENDING" %>
+        <form action="<%= approve_cat_rental_request_url(request.id) %>" method="POST">
+            <input type="submit" value="Approve">
+        </form>
+
+        <form action="<%= deny_cat_rental_request_url(request.id) %>" method="POST">
+            <input type="submit" value="Deny">
+        </form>
+    <% end %>
 <% end %>
+
+<br>
+<br>
 
 <%= link_to 'Edit Cat', edit_cat_url(@cat) %>
 <%= link_to 'All Cats', cats_url %>

@@ -28,8 +28,26 @@ class CatRentalRequest < ApplicationRecord
         CatRentalRequest.where.not('id = ?', self.id).where('cat_id = ? AND end_date >= ?', self.cat_id, self.start_date)
     end
 
+    def overlapping_pending_requests
+        overlapping_requests.where('status = ?', 'PENDING')
+    end
+
     def overlapping_approved_requests
         overlapping_requests.where('status = ?', 'APPROVED')
+    end
+
+    def approve!
+        CatRentalRequest.transaction do
+            self.status = "APPROVED"
+            self.save
+            overlapping_pending_requests.each do |pending_request|
+                pending_request.update_attribute(:status, "DENIED")
+            end
+        end
+    end
+
+    def deny!
+        self.update_attribute(:status, "DENIED")
     end
 
     private
