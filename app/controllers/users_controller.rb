@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
         if @user.save
             login_user!(@user)
-            redirect_to cats_url
+            redirect_to user_url(@user)
         else
             flash.now[:errors] = @user.errors.full_messages
             render :new
@@ -20,6 +20,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :password)
+        params.require(:user).permit(:username, :password, :password_confirmation)
     end
 end

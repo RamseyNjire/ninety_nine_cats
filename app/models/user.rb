@@ -6,6 +6,8 @@ class User < ApplicationRecord
     validates :password_digest, presence: { message: "^Password can't be blank" }
     validates :username, uniqueness: { message: "^Username already taken" }
     validates :password, length: { minimum: 6, allow_nil: true }
+    validates :password, confirmation: { message: "^Passwords must match" }
+    validates :password_confirmation, presence: { message: "^Must confirm password" }
 
     before_validation :ensure_session_token
 

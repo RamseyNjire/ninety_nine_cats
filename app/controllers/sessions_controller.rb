@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
     def new
     end
-    
+
     def create
         @user = User.find_by_credentials(
             params[:user][:username],
@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
             render :new
         else
             login!(@user)
-            redirect_to cats_url
+            redirect_to user_url(@user)
         end
     end
 end
