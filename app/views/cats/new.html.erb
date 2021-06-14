@@ -1,3 +1,4 @@
-<h1>Create A New Cat!</h1>
+<h1>New Cat</h1>
 
-<%= render 'form', cat: @cat, action_url: cats_url, submit_text: "Create Cat!" %>
+<%= render 'shared/errors' %>
+<%= render 'form', cat: @cat %>
