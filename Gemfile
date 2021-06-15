@@ -31,7 +31,7 @@ gem 'bootsnap'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'bcrypt'
-gem 'custom_error_messages'
+gem 'custom_error_message'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
