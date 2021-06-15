@@ -1,5 +1,6 @@
 class CatsController < ApplicationController
   before_action :require_current_user!, except: [:index, :show]
+  before_action :edit_own_cat, only: [:edit, :update]
   
   def index
     @cats = Cat.all
@@ -46,5 +47,12 @@ class CatsController < ApplicationController
 
   def cat_params
     params.require(:cat).permit(:age, :birth_date, :color, :description, :name, :sex)
+  end
+
+  def edit_own_cat
+    cat = Cat.find_by(id: params[:id])
+    unless current_user == cat.owner
+      render plain: "You can't edit someone else's cat!"
+    end
   end
 end

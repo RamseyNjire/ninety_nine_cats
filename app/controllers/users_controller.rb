@@ -29,8 +29,8 @@ class UsersController < ApplicationController
     end
 
     def view_own_profile
-        @user = User.find_by(id: params[:id])
-        unless current_user == @user
+        user = User.find_by(id: params[:id])
+        unless current_user == user
             render plain: "You can only view your own profile"
         end
     end
