@@ -34,6 +34,8 @@ class CatRentalRequestsController < ApplicationController
     current_cat_rental_request.cat
   end
 
+  private
+
   def cat_rental_request_params
     params.require(:cat_rental_request).permit(:cat_id, :end_date, :start_date, :status)
   end
