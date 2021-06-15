@@ -11,6 +11,10 @@
       <td><%= @cat.send(attr_name) %></td>
     </tr>
   <% end %>
+    <tr>
+      <td>owner</td>
+      <td><%= @cat.owner.username %></td>
+    </tr>
 </table>
 
 <a href="<%= edit_cat_url(@cat) %>">Edit <%= @cat.name %></a>
