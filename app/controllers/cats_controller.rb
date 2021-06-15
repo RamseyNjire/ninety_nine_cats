@@ -50,9 +50,8 @@ class CatsController < ApplicationController
   end
 
   def edit_own_cat
-    cat = Cat.find_by(id: params[:id])
-    unless current_user == cat.owner
-      render plain: "You can't edit someone else's cat!"
+    unless current_user.cats.exists?(id: params[:id])
+      redirect_to cats_url
     end
   end
 end
