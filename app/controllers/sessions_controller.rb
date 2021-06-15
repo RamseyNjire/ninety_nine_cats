@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+    before_action :current_user_cannot_cannot_sign_up_or_log_in, only: :new
+    
     def new
     end
 

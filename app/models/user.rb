@@ -13,7 +13,7 @@ class User < ApplicationRecord
     attr_reader :password
     before_validation :ensure_session_token
     validates :username, presence: true
-    validates :username, uniqueness: { message: "Username must be unique" }
+    validates :username, uniqueness: { message: "^Username must be unique" }
     validates :password_digest, presence: { message: "^Password cannot be blank" }
     validates :password, length: { minimum: 6, allow_nil: true }
     validates :password_confirmation, presence: { message: "^Please confirm your password" }, on: :create

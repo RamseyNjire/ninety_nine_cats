@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     before_action :require_current_user!, except: [:create, :new]
     before_action :view_own_profile, except: [:create, :new]
+    before_action :current_user_cannot_cannot_sign_up_or_log_in, only: :new
     
     def new
         @user = User.new
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
 
         if user.save
             login!(user)
-            redirect_to user_url(@user)
+            redirect_to user_url(user)
         else
             render json: user.errors.full_messages
         end
