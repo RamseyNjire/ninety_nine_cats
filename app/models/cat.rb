@@ -22,7 +22,6 @@ class Cat < ApplicationRecord
   validates :color, inclusion: CAT_COLORS
   validates :sex, inclusion: %w(M F)
   validates :birth_date, :color, :name, :sex, presence: true
-  validates :owner, presence: { message: "Cat must have an owner" }
 
   # Remember, has_many is just a method where the first argument is
   # the name of the association, and the second argument is an options
