@@ -11,12 +11,14 @@
 #
 class User < ApplicationRecord
     attr_reader :password
+    before_validation :ensure_session_token
     validates :username, presence: true
     validates :username, uniqueness: { message: "Username must be unique" }
     validates :password_digest, presence: { message: "^Password cannot be blank" }
     validates :password, length: { minimum: 6, allow_nil: true }
     validates :password_confirmation, presence: { message: "^Please confirm your password" }
     validates :password, confirmation: { message: "^Passwords should match" }
+    validates :session_token, presence: true
 
 
 
@@ -29,5 +31,26 @@ class User < ApplicationRecord
         BCrypt::Password.new(self.password_digest).is_password?(password)
     end
 
-    # def generate_token
+    def User.find_by_credentials(username, password)
+        user = User.find_by(username: username)
+        return nil if user.nil?
+
+        user.is_password?(password) ? user : nil
+    end
+
+    def generate_session_token
+        SecureRandom::urlsafe_base64(16)
+    end
+
+    def reset_session_token
+        session_token = generate_session_token
+        save!
+        session_token
+    end
+
+    private
+
+    def ensure_session_token
+        session_token ||= generate_session_token
+    end
 end
