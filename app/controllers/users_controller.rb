@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     before_action :require_current_user!, except: [:create, :new]
+    before_action :view_own_profile, except: [:create, :new]
     
     def new
         @user = User.new
@@ -27,7 +28,8 @@ class UsersController < ApplicationController
     end
 
     def view_own_profile
-        unless current_user = @user
+        @user = User.find_by(id: params[:id])
+        unless current_user == @user
             render plain: "You can only view your own profile"
         end
     end

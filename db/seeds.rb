@@ -15,6 +15,7 @@ CatRentalRequest.create(cat_id: caesar.id, start_date: Date.today + 4, end_date:
 CatRentalRequest.create(cat_id: cleopatra.id, start_date: Date.today, end_date: Date.today + 3)
 CatRentalRequest.create(cat_id: aurelius.id, start_date: Date.today, end_date: Date.today + 3, status: "DENIED")
 
-ramsey = User.create(username: "Ramsey", password: "password", password_confirmation: "password", session_token: "FNubXKxELuzRSC_ZrsOy2g")
+ramsey = User.create(username: "Ramsey", password: "password", password_confirmation: "password")
+reson = User.create(username: "Reson", password: "password", password_confirmation: "password")
 
 
