@@ -28,6 +28,14 @@ class User < ApplicationRecord
         dependent: :destroy
     )
 
+    has_many(
+        :cat_rental_requests,
+        class_name: "CatRentalRequest",
+        foreign_key: :user_id,
+        primary_key: :id,
+        dependent: :destroy
+    )
+
 
 
     def password=(password)
