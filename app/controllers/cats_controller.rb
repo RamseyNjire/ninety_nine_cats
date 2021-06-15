@@ -1,4 +1,5 @@
 class CatsController < ApplicationController
+  helper_method :current_user_owns_cat?
   before_action :require_current_user!, except: [:index, :show]
   before_action :edit_own_cat, only: [:edit, :update]
   
@@ -53,5 +54,10 @@ class CatsController < ApplicationController
     unless current_user.cats.exists?(id: params[:id])
       redirect_to cats_url
     end
+  end
+
+  def current_user_owns_cat?
+    @cat = Cat.find(params[:id])
+    current_user == @cat.owner
   end
 end
