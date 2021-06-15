@@ -15,6 +15,8 @@ class User < ApplicationRecord
     validates :username, uniqueness: { message: "^Username must be unique" }
     validates :password_digest, presence: { message: "^Password cannot be blank" }
     validates :password, length: { minimum: 6, allow_nil: true }
+    validates :password_confirmation, presence: { message: "^Please confirm your password" }
+    validates :password, confirmation: { message: "^Passwords should match" }
 
 
 
