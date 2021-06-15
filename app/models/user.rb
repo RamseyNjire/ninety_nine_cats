@@ -20,6 +20,14 @@ class User < ApplicationRecord
     validates :password, confirmation: { message: "^Passwords should match" }
     validates :session_token, presence: true
 
+    has_many(
+        :cats,
+        class_name: "Cat",
+        foreign_key: :user_id,
+        primary_key: :id,
+        dependent: :destroy
+    )
+
 
 
     def password=(password)
