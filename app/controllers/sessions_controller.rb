@@ -9,10 +9,15 @@ class SessionsController < ApplicationController
         )
 
         if user.nil?
-            render json: "Username or password was incorrect"
+            render plain: "Username or password was incorrect"
         else
             login!(user)
             redirect_to user_url(user)
         end
+    end
+
+    def destroy
+        logout!
+        redirect_to new_session_url
     end
 end
