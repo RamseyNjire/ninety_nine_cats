@@ -8,14 +8,18 @@ class ApplicationController < ActionController::Base
         session[:session_token] = @session.session_token
     end
 
-    def logout!
-        current_user.try(:reset_session_token)
-        session[:session_token] = nil
-    end
+    # def logout!
+    #     token = session[:session_token]
+    #     @session = Session.find_by(session_token: token)
+    #     @session.destroy
+    #     session[:session_token] = nil
+    # end
 
     def current_user
         return nil if session[:session_token].nil?
-        @current_user ||= User.find_by(session_token: session[:session_token])
+        token = session[:session_token]
+        session = Session.find_by(session_token: token)
+        @current_user ||= session.user
     end
 
     def require_current_user!

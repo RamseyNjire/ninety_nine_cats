@@ -22,4 +22,12 @@ class SessionsController < ApplicationController
         logout!
         redirect_to new_session_url
     end
+
+    private
+    def logout!
+        token = session[:session_token]
+        @session = Session.find_by(session_token: token)
+        @session.destroy
+        session[:session_token] = nil
+    end
 end
