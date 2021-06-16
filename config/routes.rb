@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resource :session
+  resources :session
 
   root to: redirect('/cats')
 end

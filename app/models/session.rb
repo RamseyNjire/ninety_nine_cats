@@ -9,6 +9,7 @@
 class Session < ApplicationRecord
     validates :user_id, presence: true
     validates :session_token, presence: true
+    before_validation :ensure_session_token
     
     
     belongs_to(
