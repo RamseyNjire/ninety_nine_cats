@@ -25,6 +25,7 @@ class Session < ApplicationRecord
         begin
             token = SecureRandom::urlsafe_base64(16)
         end while Session.exists?(session_token: token)
+        token
     end
 
     def reset_session_token

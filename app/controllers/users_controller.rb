@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find_by(id: params[:id])
+        @user_agent = UserAgent.parse(request.env['HTTP_USER_AGENT'])
     end
 
     private

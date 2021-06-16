@@ -20,13 +20,14 @@
 #                            PATCH  /users/:id(.:format)                                                                     users#update
 #                            PUT    /users/:id(.:format)                                                                     users#update
 #                            DELETE /users/:id(.:format)                                                                     users#destroy
-#                new_session GET    /session/new(.:format)                                                                   sessions#new
-#               edit_session GET    /session/edit(.:format)                                                                  sessions#edit
-#                    session GET    /session(.:format)                                                                       sessions#show
-#                            PATCH  /session(.:format)                                                                       sessions#update
-#                            PUT    /session(.:format)                                                                       sessions#update
-#                            DELETE /session(.:format)                                                                       sessions#destroy
-#                            POST   /session(.:format)                                                                       sessions#create
+#                   sessions GET    /sessions(.:format)                                                                      sessions#index
+#                            POST   /sessions(.:format)                                                                      sessions#create
+#                new_session GET    /sessions/new(.:format)                                                                  sessions#new
+#               edit_session GET    /sessions/:id/edit(.:format)                                                             sessions#edit
+#                    session GET    /sessions/:id(.:format)                                                                  sessions#show
+#                            PATCH  /sessions/:id(.:format)                                                                  sessions#update
+#                            PUT    /sessions/:id(.:format)                                                                  sessions#update
+#                            DELETE /sessions/:id(.:format)                                                                  sessions#destroy
 #                       root GET    /                                                                                        redirect(301, /cats)
 #         rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 #  rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
@@ -45,7 +46,7 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resources :session
+  resources :sessions
 
   root to: redirect('/cats')
 end
