@@ -36,6 +36,14 @@ class User < ApplicationRecord
         dependent: :destroy
     )
 
+    has_many(
+        :sessions,
+        class_name: "Session",
+        foreign_key: :user_id,
+        primary_key: :id,
+        dependent: :destroy
+    )
+
 
 
     def password=(password)
@@ -54,19 +62,19 @@ class User < ApplicationRecord
         user.is_password?(password) ? user : nil
     end
 
-    def User.generate_session_token
-        SecureRandom::urlsafe_base64(16)
-    end
+    # def User.generate_session_token
+    #     SecureRandom::urlsafe_base64(16)
+    # end
 
-    def reset_session_token
-        session_token = User.generate_session_token
-        save!
-        session_token
-    end
+    # def reset_session_token
+    #     session_token = User.generate_session_token
+    #     save!
+    #     session_token
+    # end
 
-    private
+    # private
 
-    def ensure_session_token
-        self.session_token ||= User.generate_session_token
-    end
+    # def ensure_session_token
+    #     self.session_token ||= User.generate_session_token
+    # end
 end
