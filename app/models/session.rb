@@ -9,6 +9,7 @@
 class Session < ApplicationRecord
     validates :user_id, presence: true
     validates :session_token, presence: true
+    validates :session_token, uniqueness: true
     before_validation :ensure_session_token
     
     
@@ -21,7 +22,9 @@ class Session < ApplicationRecord
 
 
     def Session.generate_session_token
-        SecureRandom::urlsafe_base64(16)
+        begin
+            token = SecureRandom::urlsafe_base64(16)
+        end while Session.exists?(session_token: token)
     end
 
     def reset_session_token

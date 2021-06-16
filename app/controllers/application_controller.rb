@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
 
     def login!(user)
         @current_user = user
-        session[:session_token] = user.session_token
+        @session = @current_user.sessions.build
+        @session.save if @session.valid?
+        session[:session_token] = @session.session_token
     end
 
     def logout!
