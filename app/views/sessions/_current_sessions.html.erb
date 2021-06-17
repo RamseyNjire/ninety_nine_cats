@@ -1,0 +1,22 @@
+<table>
+    <tr>
+        <td>Operating System</td>
+        <td>Browser</td>
+        <td>Version</td>
+    </tr>
+    <% user.sessions.each do |session| %>
+        <tr>
+            <td><%= session.operating_system %></td>
+            <td><%= session.browser %></td>
+            <td><%= session.browser_version %></td>
+            <td>
+                <form action="<%= session_url(session) %>" method="post">
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                    <input type="hidden" name="session" value="<%= session.id %>">
+                    <input type="submit" value="Logout">
+                </form>
+            </td>
+        </tr>
+    <% end %>
+</table>

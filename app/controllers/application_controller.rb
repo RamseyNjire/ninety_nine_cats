@@ -3,7 +3,11 @@ class ApplicationController < ActionController::Base
 
     def login!(user)
         @current_user = user
-        @session = @current_user.sessions.build
+        @user_agent = UserAgent.parse(request.env['HTTP_USER_AGENT'])
+        @session = @current_user.sessions.build(
+            operating_system: @user_agent.os,
+            browser: @user_agent.browser,
+            browser_version: @user_agent.version)
         @session.save! if @session.valid?
         session[:session_token] = @session.session_token
     end
@@ -18,8 +22,9 @@ class ApplicationController < ActionController::Base
     def current_user
         return nil if session[:session_token].nil?
         token = session[:session_token]
-        session = Session.find_by(session_token: token)
-        @current_user ||= session.user
+        @session = Session.find_by(session_token: token)
+        return nil unless @session
+        @current_user ||= @session.user
     end
 
     def require_current_user!

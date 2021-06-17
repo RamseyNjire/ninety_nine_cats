@@ -1,5 +1,5 @@
 <h1><%= @user.username %></h1>
 <p>Hello, dear user!</p>
-<p>Operating System: <%= @user_agent.os %></p>
-<p>Browser: <%= @user_agent.browser %></p>
-<p>Version: <%= @user_agent.version %></p>
+<h2>Sessions:</h2>
+
+<%= render 'sessions/current_sessions', user: @user %>

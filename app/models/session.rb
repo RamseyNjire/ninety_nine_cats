@@ -2,9 +2,12 @@
 #
 # Table name: sessions
 #
-#  id            :bigint           not null, primary key
-#  session_token :string           not null
-#  user_id       :integer          not null
+#  id               :bigint           not null, primary key
+#  session_token    :string           not null
+#  user_id          :integer          not null
+#  operation_system :string
+#  browser          :string
+#  browser_version  :string
 #
 class Session < ApplicationRecord
     validates :user_id, presence: true

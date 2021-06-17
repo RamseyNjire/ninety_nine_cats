@@ -19,15 +19,24 @@ class SessionsController < ApplicationController
     end
 
     def destroy
-        logout!
-        redirect_to new_session_url
+        session = logout!
+        if params.has_key?(:session)
+            user = session.user
+            redirect_to user_url(user)
+        else
+            redirect_to new_session_url
+        end
     end
 
-    private
     def logout!
-        token = session[:session_token]
-        @session = Session.find_by(session_token: token)
+        if params.has_key?(:session)
+            @session = Session.find_by(id: params[:session])
+        else
+            token = session[:session_token]
+            @session = Session.find_by(session_token: token)
+        end
         @session.destroy
         session[:session_token] = nil
+        @session
     end
 end
